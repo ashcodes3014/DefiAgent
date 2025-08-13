@@ -1,0 +1,24 @@
+# FastAPI + Web Server
+fastapi
+uvicorn[standard]
+
+# Crypto & Financial Data
+requests
+pandas
+ta
+yfinance
+
+# Firebase: Firestore + FCM
+firebase-admin
+pyfcm
+
+# LangChain + OpenAI
+langchain
+openai
+langchain-openai
+
+# Environment Variables
+python-dotenv
+
+# Scheduler
+schedule
