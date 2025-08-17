@@ -12,7 +12,6 @@ symbol_to_id = {
     "arbitrum": "arbitrum",
 }
 
-
 def process_user(user: dict):
     uid = user["uid"]
     address = user["address"]
@@ -26,12 +25,11 @@ def process_user(user: dict):
 
         results["Updates"].setdefault(chain_name, {})
 
-
         chain_names = symbol_to_id[chain_name]
 
         features = get_coin_features(chain_names)
         if not features["success"]:
-            results["chains"][chain_name] = {
+            results["Updates"][chain_name] = {
                 "action": "Hold",
                 "reason": f"Data fetch failed: {features['error']}",
                 "balance": balance
@@ -47,10 +45,13 @@ def process_user(user: dict):
             "reason": action_obj.get("reason", "No data"),
             "balance": balance
         }
-        
+
         time.sleep(5)
-    result['Updates']['last_updated']:datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
+    results['Updates']['last_updated'] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+
     fs.collection("USERS").document(uid) \
         .collection("wallets").document(address) \
         .set(results, merge=True)
 
+    return results
