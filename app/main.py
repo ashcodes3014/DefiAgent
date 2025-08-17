@@ -7,13 +7,13 @@ from fetch import fetch_chosen_wallets, get_all_users_wallets
 app = FastAPI()
 
 def scheduled_update():
-    print("⏳ Running scheduled wallet update...")
+    print("Running scheduled wallet update...")
     result = fetch_chosen_wallets()
     users = get_all_users_wallets(result)
     for user in users:
         process_user(user)
         time.sleep(10)
-    print("✅ Scheduled update complete")
+    print("Scheduled update complete")
 
 
 @app.on_event("startup")
