@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+apscheduler
+requests
+python-dotenv
+firebase-admin
+pydantic
+pytz
+tzlocal
+ta 
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+zstandard
