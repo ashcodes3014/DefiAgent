@@ -2,7 +2,7 @@ from firebase_config import fs
 from dataFetcher import get_coin_features
 from llm_agent import get_llm_action
 import time
-import pytz
+from zoneinfo import ZoneInfo
 from datetime import datetime
 
 symbol_to_id = {
@@ -49,8 +49,7 @@ def process_user(user: dict):
 
         time.sleep(5)
 
-    india = pytz.timezone("Asia/Kolkata")
-    results['Updates']['last_updated'] = datetime.now(india).strftime("%Y-%m-%d %H:%M:%S %Z")
+    results['Updates']['last_updated'] = datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%Y-%m-%d %H:%M:%S %Z")
 
     fs.collection("USERS").document(uid) \
         .collection("wallets").document(address) \
