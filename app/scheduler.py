@@ -2,6 +2,7 @@ from firebase_config import fs
 from dataFetcher import get_coin_features
 from llm_agent import get_llm_action
 import time
+from datetime import datetime
 
 symbol_to_id = {
     "eth": "ethereum",
@@ -48,6 +49,7 @@ def process_user(user: dict):
         }
         
         time.sleep(5)
+    result['Updates']['last_updated']:datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     fs.collection("USERS").document(uid) \
         .collection("wallets").document(address) \
         .set(results, merge=True)
