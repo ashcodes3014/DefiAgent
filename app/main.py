@@ -27,7 +27,7 @@ def start_scheduler():
     scheduler = BackgroundScheduler()
     scheduler.add_job(scheduled_update, "interval", hours=1, id="wallet_update_job")
     scheduler.start()
-    print("Scheduler started - updates every 1 minute")
+    print("Scheduler started - updates every 1 hours")
 
 
 @app.get("/Update")
